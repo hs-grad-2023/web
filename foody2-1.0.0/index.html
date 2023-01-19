@@ -110,21 +110,19 @@
 
     <!-- 날씨 API Start -->
     <!-- javascript 처리 예정 -->
-<!-- 
-    http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getFcstVersion
-?serviceKey=ooH%2FvlpPYqrSdkp8Upqz6g%2FJ7KWVBVtEJ%2FQ6MzBpkZzgkP%2FivR3R506uj4hq7YOI65VcUm5MxTf6GNgOP0ffiA%3D%3D&numOfRows=10&pageNo=1
-&ftype=ODAM&basedatetime=202106280800
-    
 
- -->
-    
-    
     <div class = "container-sm">
-        <div class="container-sm col-md-8 border border-primary rounded-pill border-3 text-center">
-            <div id="TodayDate" ></div>
-            <div id="Temperature"></div>
-            <div id="Weather"></div>
+        <div class="row">
+            <div class="container-sm col-md-8 border border-primary rounded-pill border-3 text-center">
+                <div id="TodayDate" ></div>
+                <div id="Temperature"></div>
+                <div id="Weather"></div>
+            </div>
+            <div class="col-md-4">
+                
+            </div>
         </div>
+        
     </div>
     <!-- 날씨 API End -->
 
@@ -133,31 +131,32 @@
     <script>
         const serviceKey='ooH%2FvlpPYqrSdkp8Upqz6g%2FJ7KWVBVtEJ%2FQ6MzBpkZzgkP%2FivR3R506uj4hq7YOI65VcUm5MxTf6GNgOP0ffiA%3D%3D';
         const dataType = 'JSON';
-        const numOfRows = '250'; //250은 되어야 TMN, TMX가 뜸; 
+        const numOfRows = '250'; //500은 되어야 TMN, TMX가 뜸; 
         const today = new Date();
         const baseDate = String(today.getFullYear())+((today.getMonth()+1)<10 ? '0'+String(today.getMonth()+1):String(today.getMonth()+1))+(today.getDate()<10 ? '0'+String(today.getDate()):String(today.getDate()));
-        let baseTime;
+        let baseTime='0200';
         const nx = '57';
         const ny = '119';
-
+        
+        // 최저, 최고온도 가져올때는 베이스타임이 중요치 않음, 오히려 오류나서 지움
         // 날씨 API의 baseTime이 0200, 0500, 0800, 1100, 1400, 1700, 2000, 2300 딱 8가지임
-        if(today.getHours()<5){
-            baseTime='0200'}
-        else if(today.getHours()<8){
-            baseTime='0500'}
-        else if(today.getHours()<11){
-            baseTime='0800'}
-        else if(today.getHours()<14){
-            baseTime='1100'}
-        else if(today.getHours()<17){
-            baseTime='1400'}
-        else if(baseDate.getHours()<20){
-            baseTime='1700'}
-        else if(today.getHours()<23){
-            baseTime='2000'}
-        else{
-            baseTime='2300'
-        }
+        // if(today.getHours()<5){
+        //     baseTime='0200'}
+        // else if(today.getHours()<8){
+        //     baseTime='0500'}
+        // else if(today.getHours()<11){
+        //     baseTime='0800'}
+        // else if(today.getHours()<14){
+        //     baseTime='1100'}
+        // else if(today.getHours()<17){
+        //     baseTime='1400'}
+        // else if(today.getHours()<20){
+        //     baseTime='1700'}
+        // else if(today.getHours()<23){
+        //     baseTime='2000'}
+        // else{
+        //     baseTime='2300'
+        // }
 
         document.getElementById('TodayDate').innerHTML = '지금 '+ today.getFullYear() +'년 '+ today.getMonth()+1 + '월 ' +  today.getDate() + '일의 날씨는';
 
@@ -184,6 +183,7 @@
     </script>
 
     <!-- About Start -->
+    <!-- 
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -203,6 +203,7 @@
             </div>
         </div>
     </div>
+    -->
     <!-- About End -->
 
 
